@@ -1,0 +1,142 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold">Tableau de Bord</h1>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Line Chart -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <canvas id="lineChart"></canvas>
+    </div>
+    <!-- Bar Chart -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <canvas id="barChart"></canvas>
+    </div>
+    <!-- Pie Chart -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <canvas id="pieChart"></canvas>
+    </div>
+    <!-- Doughnut Chart -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <canvas id="doughnutChart"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Catéchumènes inscrits',
+                data: [10, 20, 15, 30, 25, 35],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+    const barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Classe A', 'Classe B', 'Classe C', 'Classe D'],
+            datasets: [{
+                label: 'Nombre d\'étudiants',
+                data: [30, 25, 35, 20],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Animateur A', 'Animateur B', 'Animateur C'],
+            datasets: [{
+                label: 'Répartition des animateurs',
+                data: [30, 40, 30],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+    const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+    const doughnutChart = new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            datasets: [{
+                label: 'Progression mensuelle',
+                data: [15, 25, 10, 30, 20, 25],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+</script>
+{% endblock %}

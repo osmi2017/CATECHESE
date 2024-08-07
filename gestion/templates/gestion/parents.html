@@ -1,0 +1,40 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold">Parents</h1>
+    <a href="{% url 'create_parent' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer</a>
+</div>
+
+<table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-800 text-white">
+        <tr>
+            <th class="py-2 px-4">Nom</th>
+            <th class="py-2 px-4">Prénom</th>
+            <th class="py-2 px-4">Contact</th>
+            <th class="py-2 px-4">Date de création</th>
+            <th class="py-2 px-4">Photo</th>
+            <th class="py-2 px-4">Catéchumènes</th>
+        </tr>
+    </thead>
+    <tbody class="bg-gray-200">
+        {% for parent in parents_list %}
+        <tr class="bg-white border-b">
+            <td class="py-2 px-4">{{ parent.nom }}</td>
+            <td class="py-2 px-4">{{ parent.prenom }}</td>
+            <td class="py-2 px-4">{{ parent.contact }}</td>
+            <td class="py-2 px-4">{{ parent.date_creation }}</td>
+            <td class="py-2 px-4">
+                {% if parent.photo %}
+                <img src="{{ parent.photo.url }}" alt="{{ parent.nom }}" class="w-12 h-12 rounded-full">
+                {% else %}
+                <span>N/A</span>
+                {% endif %}
+            </td>
+            <td class="py-2 px-4">
+                {{ parent.catechumenes.all|join:", " }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

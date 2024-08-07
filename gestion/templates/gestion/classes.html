@@ -1,0 +1,28 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold">Classes</h1>
+    <a href="{% url 'create_classe' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer</a>
+</div>
+
+<table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-800 text-white">
+        <tr>
+            <th class="py-2 px-4">Nom</th>
+            <th class="py-2 px-4">Année</th>
+            <th class="py-2 px-4">Catégorie</th>
+            <th class="py-2 px-4">Animateur</th>
+        </tr>
+    </thead>
+    <tbody class="bg-gray-200">
+        {% for classe in classes %}
+        <tr class="bg-white border-b">
+            <td class="py-2 px-4">{{ classe.nom }}</td>
+            <td class="py-2 px-4">{{ classe.annee }}</td>
+            <td class="py-2 px-4">{{ classe.categorie }}</td>
+            <td class="py-2 px-4">{{ classe.animateur.get_full_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

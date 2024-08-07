@@ -1,0 +1,40 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-2xl font-semibold">Catéchumènes</h1>
+    <a href="{% url 'create_catechumene' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Créer</a>
+</div>
+
+<table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+    <thead class="bg-gray-800 text-white">
+        <tr>
+            <th class="py-2 px-4">Nom</th>
+            <th class="py-2 px-4">Prénom</th>
+            <th class="py-2 px-4">Matricule</th>
+            <th class="py-2 px-4">Code</th>
+            <th class="py-2 px-4">Contact</th>
+            <th class="py-2 px-4">Catégorie</th>
+            <th class="py-2 px-4">Profession/Niveau d'étude</th>
+            <th class="py-2 px-4">Date de Création</th>
+            <th class="py-2 px-4">Classe</th>
+            <th class="py-2 px-4">Animateur</th>
+        </tr>
+    </thead>
+    <tbody class="bg-gray-200">
+        {% for catechumene in catechumenes_list %}
+        <tr class="bg-white border-b">
+            <td class="py-2 px-4">{{ catechumene.nom }}</td>
+            <td class="py-2 px-4">{{ catechumene.prenom }}</td>
+            <td class="py-2 px-4">{{ catechumene.matricule }}</td>
+            <td class="py-2 px-4">{{ catechumene.code }}</td>
+            <td class="py-2 px-4">{{ catechumene.contact }}</td>
+            <td class="py-2 px-4">{{ catechumene.get_categorie_display }}</td>
+            <td class="py-2 px-4">{{ catechumene.profession_ou_niveau_etude }}</td>
+            <td class="py-2 px-4">{{ catechumene.date_creation|date:"d/m/Y" }}</td>
+            <td class="py-2 px-4">{{ catechumene.classe }}</td>
+            <td class="py-2 px-4">{{ catechumene.animateur.user.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

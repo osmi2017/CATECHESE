@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Catéchèse</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body class="flex h-screen bg-gray-100">
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="w-64 bg-gray-800 text-white flex flex-col p-6">
+        <h2 class="text-2xl font-semibold mb-4">Menu</h2>
+        <ul class="space-y-2">
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'dashboard' %}">Tableau de Bord</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'classes' %}">Classes</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'notes' %}">Notes</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'cours' %}">Cours</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'messes' %}">Messes</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'catechumens' %}">Catéchumènes</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'parents' %}">Parents</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'animateurs' %}">Animateurs</a>
+            </li>
+            <li>
+                <a class="block py-2 px-4 rounded hover:bg-gray-700" href="{% url 'presence' %}">Présences</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content" class="flex-1 flex flex-col">
+        <!-- Top Bar -->
+        <div class="bg-white shadow p-4 flex justify-between items-center">
+            <h1 class="text-xl font-semibold">Gestion de Catéchèse</h1>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Déconnection</button>
+            </form>
+        </div>
+
+        <!-- Page Content -->
+        <div class="p-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(function() {
+        // Initialize the datepicker on the input field with the id 'id_date'
+        $('#id_date').datepicker({
+            dateFormat: 'yy-mm-dd', // Format of the date
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "1900:2100"
+        });
+    });
+</script>
+

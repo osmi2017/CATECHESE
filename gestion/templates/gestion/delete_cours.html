@@ -1,0 +1,10 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+<h1>Supprimer le Cours</h1>
+<p>Êtes-vous sûr de vouloir supprimer ce cours ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Supprimer</button>
+    <a href="{% url 'cours' %}" class="btn btn-secondary">Annuler</a>
+</form>
+{% endblock %}
